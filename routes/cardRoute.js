@@ -54,7 +54,7 @@ router.get('/:id', async (req, res) =>
       let card = await Card.findById(req.params.id);
       
       if (!card) {
-        return res.status(404).json({ msg: 'Card not found' })
+        return res.status(404).json({ msg: 'Card not found ' })
       }
       
       // Update card
@@ -70,12 +70,31 @@ router.get('/:id', async (req, res) =>
       console.error(err.message);
       
       if (err.kind === 'ObjectId') {
-        return res.status(404).json({ msg: 'Card not found' })
+        return res.status(404).json({ msg: 'Card not found ' })
       }
       
       res.status(500).send('Server Error');
     }
   });
 
+
+
+  router.get('/cardid/:cardID', async (req, res) => {
+    try {
+      const card = await Card.findOne({ cardID: req.params.cardID }).select('-__v');
+      
+      if (!card) {
+        return res.status(404).json({ msg: 'Card not found ' })
+      }
+      
+      res.json(card);
+
+    } catch (err) {
+      console.error(err.message);
+
+      
+      res.status(500).send('Server Error');
+    }
+  });
 
   module.exports = router;
