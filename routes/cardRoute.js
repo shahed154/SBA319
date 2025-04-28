@@ -97,4 +97,25 @@ router.get('/:id', async (req, res) =>
     }
   });
 
+
+  router.delete('/:id', async (req, res) => {
+    try {
+      const card = await Card.findById(req.params.id);
+      
+      if (!card) {
+        return res.status(404).json({ msg: 'Card not found ' });
+      }
+      
+      await card.deleteOne();
+      
+      res.json({ msg: 'CARD DELTED' });
+
+    } catch (err)
+     {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  });
+
+
   module.exports = router;
