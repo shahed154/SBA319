@@ -5,10 +5,11 @@
 
 ## Technologies Used
 - **Node.js**
-- **Express.js (v5.1.0)** 
+- **Express.js** 
 - **MongoDB**
-- **Mongoose (v8.14.0)** 
+- **Mongoose** 
 
+# Features
 
 ### Users
 - GET /users/:id - Get a user by ID
