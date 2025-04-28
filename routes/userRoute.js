@@ -69,6 +69,32 @@ router.get('/:id', async (req, res) => {
     }
   });
 
+  router.patch('/:id', async (req, res) => {
+    try {
+
+      const user = await User.findById(req.params.id);
+      
+      if (!user) {
+        return res.status(404).json({ msg: 'USER NOT FOUND' });
+      }
+      
+  
+      const update = req.body;
+
+      
+      const { _id, ...updateFields } = req.body;
+      Object.assign(user, updateFields);
+
+      await user.save();
+      
+      res.json(user);
+
+
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  });
 
 
   router.delete('/:id', async (req, res) => {
