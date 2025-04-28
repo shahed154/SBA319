@@ -27,7 +27,6 @@
 ### Collections
 - GET  - Get a user's collection
 - POST  - Create a new collection
-- PUT  - Add a card to a collection
 - DELETE  - Delete a collection
 
 
